@@ -20,6 +20,14 @@ JobSystem& JobSystem::Instance()
     return j;
 }
 
+JobSystem::~JobSystem()
+{
+    // Static destruction order is not guaranteed. Join any workers while the
+    // condition variables and mutex are still alive; otherwise a worker can
+    // wake after they are destroyed and abort the process during shutdown.
+    Shutdown();
+}
+
 void JobSystem::Initialize(size_t threads)
 {
     std::lock_guard<std::mutex> lk(mtx_);

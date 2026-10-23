@@ -282,6 +282,7 @@ public:
 
 private:
     JobSystem() = default;
+    ~JobSystem();
     void WorkerLoop();
     // Queues a task without allocating a future. Returns false when the pool is
     // not running, in which case the caller must execute the task inline.

@@ -3123,7 +3123,14 @@ TEST_CASE("Macros: array count and stringify are usable in constant expressions"
 TEST_CASE("NativeModule: reports the platform extension and refuses a late reload", "[hotreload]")
 {
     NativeModule module;
-    REQUIRE(NativeModule::PlatformExtension() == ".dll");
+#if defined(_WIN32)
+    const std::string expectedExtension = ".dll";
+#elif defined(__APPLE__)
+    const std::string expectedExtension = ".dylib";
+#else
+    const std::string expectedExtension = ".so";
+#endif
+    REQUIRE(NativeModule::PlatformExtension() == expectedExtension);
     REQUIRE_FALSE(module.Loaded());
     REQUIRE_FALSE(module.Reload());
     REQUIRE_FALSE(module.LastError().empty());
