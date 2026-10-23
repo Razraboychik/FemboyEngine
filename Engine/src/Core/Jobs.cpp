@@ -16,8 +16,10 @@ thread_local bool tls_isWorker = false;
 
 JobSystem& JobSystem::Instance()
 {
-    static JobSystem j;
-    return j;
+    // Intentionally process-lifetime: worker threads and condition variables
+    // must not be destroyed by static-destruction order at process exit.
+    static JobSystem* j = new JobSystem();
+    return *j;
 }
 
 JobSystem::~JobSystem()

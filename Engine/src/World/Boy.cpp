@@ -12,8 +12,10 @@ namespace Fem
 
 Boy& Boy::Instance()
 {
-    static Boy b;
-    return b;
+    // Process-lifetime logger: another singleton's destructor may still log
+    // while static objects are being torn down.
+    static Boy* b = new Boy();
+    return *b;
 }
 
 void Boy::SetLogFile(const std::string& path)

@@ -86,4 +86,4 @@ jobs:
         run: cmake --build build --target FemboyEditor femboy_tests
 
       - name: Tests
-        run: xcrun lldb --batch -o run -o "bt 30" -o quit ./build/femboy_tests
+        run: ./build/femboy_tests
