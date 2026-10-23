@@ -1,0 +1,87 @@
+name: build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows:
+    name: Windows (MSVC)
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DFEMBOY_BUILD_TESTS=ON
+
+      - name: Build
+        run: cmake --build build --target FemboyEditor femboy_tests
+
+      - name: Tests
+        run: .\build\femboy_tests.exe
+
+  linux:
+    name: Linux (GCC)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      # The X11/OpenGL/audio headers are the ones SFML 3 needs to build itself.
+      - name: Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build libx11-dev libxrandr-dev libxcursor-dev libxi-dev \
+            libudev-dev libgl1-mesa-dev libfreetype-dev libopenal-dev \
+            libvorbis-dev libflac-dev
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DFEMBOY_FETCH_SFML=ON
+          -DFEMBOY_BUILD_TESTS=ON
+
+      - name: Build
+        run: cmake --build build --target FemboyEditor femboy_tests
+
+      - name: Tests
+        run: ./build/femboy_tests
+
+  macos:
+    name: macOS (AppleClang)
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dependencies
+        run: brew install ninja
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DFEMBOY_FETCH_SFML=ON
+          -DFEMBOY_BUILD_TESTS=ON
+
+      - name: Build
+        run: cmake --build build --target FemboyEditor femboy_tests
+
+      - name: Tests
+        run: ./build/femboy_tests

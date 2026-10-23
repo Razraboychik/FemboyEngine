@@ -1,0 +1,71 @@
+﻿# Build trees. `build` is the dev build, `build-package` the packaging one;
+# anything else cmake -B creates is a build tree as well.
+/build/
+/build-*/
+/build*/
+/out/
+/cmake-build-*/
+
+# Compiler and linker scratch files.
+*.obj
+*.o
+*.pdb
+*.ilk
+*.idb
+*.exp
+
+# Local QA screenshots, logs and crash dumps belong outside the source tree.
+/build/*.png
+/build/*.jpg
+/build/*.jpeg
+/build/*.log
+/build/*.dmp
+/build/*.pdb
+.vs/
+*.user
+CMakeUserPresets.json
+CMakeFiles/
+
+# Games built with the engine live in separate repositories. A local game
+# checkout can stay here for development but is not part of the engine repo.
+/Projects/
+/Release/
+
+# Game build/runtime output. The source, assets/locales and prefabs stay tracked.
+/Projects/*/build/
+/Projects/*/build-*/
+/Projects/*/bin/
+/Projects/*/dist/
+/Projects/*/saves/
+/Projects/*/crashes/
+/Projects/*/assets/generated/
+/Projects/*/assets/assets.version
+/Projects/*/assets/manifest.json
+
+# Prebuilt SFML trees are large platform artifacts. A clean clone uses
+# -DFEMBOY_FETCH_SFML=ON (or a locally supplied FEMBOY_SFML_ROOT).
+/libs/SFML-3.1.0/
+/libs/SFML-3.1.0-windows-gcc-14.2.0-mingw-64-bit/
+
+# Runtime output: crash reports, logs and the game's writable data.
+/crashes/
+*.log
+Projects/*/saves/
+Projects/*/settings.json
+imgui.ini
+
+# Procedurally generated content. The game regenerates it on first launch; a
+# package can copy the generated tree explicitly when it needs to be read-only.
+Projects/*/assets/generated/
+Projects/*/assets/assets.version
+Projects/*/assets/manifest.json
+
+# A CMake distribution must never be vendored into the source tree.
+/bin/
+/share/
+/doc/CMake/
+
+# Generated documentation work directory. The release DOCX/PDF files under
+# Docs/docx and Docs/pdf are intentional deliverables and stay tracked.
+/Docs/.lo_profile/
+__pycache__/
