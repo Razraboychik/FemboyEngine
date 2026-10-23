@@ -5744,12 +5744,12 @@ int main(int argc, char** argv)
                                         {
                                             const float a0 = (60.f * edge - 30.f) * pi / 180.f;
                                             const float a1 = (60.f * (edge + 1) - 30.f) * pi / 180.f;
-                                            grid.append(sf::Vertex(
+                                            grid.append(sf::Vertex{
                                                 sf::Vector2f(cx + hexSize * std::cos(a0), cy + hexSize * std::sin(a0)),
-                                                minorColor));
-                                            grid.append(sf::Vertex(
+                                                minorColor});
+                                            grid.append(sf::Vertex{
                                                 sf::Vector2f(cx + hexSize * std::cos(a1), cy + hexSize * std::sin(a1)),
-                                                minorColor));
+                                                minorColor});
                                         }
                                     }
                                 }
@@ -5764,15 +5764,15 @@ int main(int argc, char** argv)
                                 {
                                     const float x = static_cast<float>(i) * step;
                                     const sf::Color color = i == 0 ? axisColor : (i % 5 == 0 ? majorColor : minorColor);
-                                    grid.append(sf::Vertex(sf::Vector2f(x, worldMin.y), color));
-                                    grid.append(sf::Vertex(sf::Vector2f(x, worldMax.y), color));
+                                    grid.append(sf::Vertex{sf::Vector2f(x, worldMin.y), color});
+                                    grid.append(sf::Vertex{sf::Vector2f(x, worldMax.y), color});
                                 }
                                 for (int i = firstY; i <= lastY; ++i)
                                 {
                                     const float y = static_cast<float>(i) * step;
                                     const sf::Color color = i == 0 ? axisColor : (i % 5 == 0 ? majorColor : minorColor);
-                                    grid.append(sf::Vertex(sf::Vector2f(worldMin.x, y), color));
-                                    grid.append(sf::Vertex(sf::Vector2f(worldMax.x, y), color));
+                                    grid.append(sf::Vertex{sf::Vector2f(worldMin.x, y), color});
+                                    grid.append(sf::Vertex{sf::Vector2f(worldMax.x, y), color});
                                 }
                             }
                             viewport.target.draw(grid, states);
@@ -5874,9 +5874,9 @@ int main(int argc, char** argv)
                                 entity == sceneState.selected ? sf::Color(255, 120, 200) : sf::Color(90, 90, 110);
                             for (int i = 0; i < 4; ++i)
                             {
-                                marker[i] = sf::Vertex(corners[i], color);
+                                marker[i] = sf::Vertex{corners[i], color};
                             }
-                            marker[4] = sf::Vertex(corners[0], color);
+                            marker[4] = sf::Vertex{corners[0], color};
                             viewport.target.draw(marker, states);
                         }
                         viewport.target.display();
