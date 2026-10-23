@@ -270,12 +270,12 @@ void Tilemap::RenderSorted(Skirt& FrameDrawList, const std::string& textureId, i
             const float v1 = static_cast<float>(sy + ts);
 
             sf::VertexArray& band = bands[static_cast<std::size_t>(x + y)];
-            band.append(sf::Vertex(sf::Vector2f(px, py), sf::Color::White, sf::Vector2f(u0, v0)));
-            band.append(sf::Vertex(sf::Vector2f(px + pw, py), sf::Color::White, sf::Vector2f(u1, v0)));
-            band.append(sf::Vertex(sf::Vector2f(px + pw, py + ph), sf::Color::White, sf::Vector2f(u1, v1)));
-            band.append(sf::Vertex(sf::Vector2f(px, py), sf::Color::White, sf::Vector2f(u0, v0)));
-            band.append(sf::Vertex(sf::Vector2f(px + pw, py + ph), sf::Color::White, sf::Vector2f(u1, v1)));
-            band.append(sf::Vertex(sf::Vector2f(px, py + ph), sf::Color::White, sf::Vector2f(u0, v1)));
+            band.append(sf::Vertex{sf::Vector2f(px, py), sf::Color::White, sf::Vector2f(u0, v0)});
+            band.append(sf::Vertex{sf::Vector2f(px + pw, py), sf::Color::White, sf::Vector2f(u1, v0)});
+            band.append(sf::Vertex{sf::Vector2f(px + pw, py + ph), sf::Color::White, sf::Vector2f(u1, v1)});
+            band.append(sf::Vertex{sf::Vector2f(px, py), sf::Color::White, sf::Vector2f(u0, v0)});
+            band.append(sf::Vertex{sf::Vector2f(px + pw, py + ph), sf::Color::White, sf::Vector2f(u1, v1)});
+            band.append(sf::Vertex{sf::Vector2f(px, py + ph), sf::Color::White, sf::Vector2f(u0, v1)});
         }
     }
 

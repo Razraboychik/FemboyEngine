@@ -524,9 +524,9 @@ void Sparkles::Render(sf::RenderTarget& target)
             {
                 const float a0 = phase + step * static_cast<float>(i);
                 const float a1 = phase + step * static_cast<float>(i + 1);
-                batch[cursor++] = sf::Vertex(p.pos, c);
-                batch[cursor++] = sf::Vertex({p.pos.x + std::cos(a0) * sz, p.pos.y + std::sin(a0) * sz}, c);
-                batch[cursor++] = sf::Vertex({p.pos.x + std::cos(a1) * sz, p.pos.y + std::sin(a1) * sz}, c);
+                batch[cursor++] = sf::Vertex{p.pos, c};
+                batch[cursor++] = sf::Vertex{{p.pos.x + std::cos(a0) * sz, p.pos.y + std::sin(a0) * sz}, c};
+                batch[cursor++] = sf::Vertex{{p.pos.x + std::cos(a1) * sz, p.pos.y + std::sin(a1) * sz}, c};
             }
         }
         batch.resize(cursor);
@@ -568,9 +568,9 @@ void Sparkles::Render(Skirt& FrameDrawList)
             {
                 const float a0 = phase + step * static_cast<float>(i);
                 const float a1 = phase + step * static_cast<float>(i + 1);
-                batch[cursor++] = sf::Vertex(p.pos, c);
-                batch[cursor++] = sf::Vertex({p.pos.x + std::cos(a0) * sz, p.pos.y + std::sin(a0) * sz}, c);
-                batch[cursor++] = sf::Vertex({p.pos.x + std::cos(a1) * sz, p.pos.y + std::sin(a1) * sz}, c);
+                batch[cursor++] = sf::Vertex{p.pos, c};
+                batch[cursor++] = sf::Vertex{{p.pos.x + std::cos(a0) * sz, p.pos.y + std::sin(a0) * sz}, c};
+                batch[cursor++] = sf::Vertex{{p.pos.x + std::cos(a1) * sz, p.pos.y + std::sin(a1) * sz}, c};
             }
         }
         batch.resize(cursor);
