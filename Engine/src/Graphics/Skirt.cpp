@@ -217,11 +217,18 @@ void DrawList::Polygon(const std::vector<sf::Vector2f>& points, sf::Color fill, 
     sf::VertexArray triangles(sf::PrimitiveType::Triangles);
     triangles.resize((points.size() - 2) * 3);
     size_t v = 0;
+    const auto addVertex = [&](sf::Vector2f position)
+    {
+        sf::Vertex vertex;
+        vertex.position = position;
+        vertex.color = fill;
+        triangles[v++] = vertex;
+    };
     for (size_t i = 1; i + 1 < points.size(); ++i)
     {
-        triangles[v++] = sf::Vertex(points[0], fill);
-        triangles[v++] = sf::Vertex(points[i], fill);
-        triangles[v++] = sf::Vertex(points[i + 1], fill);
+        addVertex(points[0]);
+        addVertex(points[i]);
+        addVertex(points[i + 1]);
     }
     Geometry(triangles, "", z, layer);
 
