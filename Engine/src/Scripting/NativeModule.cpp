@@ -120,7 +120,7 @@ bool NativeModule::LoadCopy(const std::filesystem::path& path)
     void* module = dlopen(path.string().c_str(), RTLD_NOW | RTLD_LOCAL);
     if (!module)
     {
-        lastError_ = "dlopen failed: " + systemError();
+        lastError_ = "dlopen failed: " + SystemError();
         return false;
     }
     handle_ = module;

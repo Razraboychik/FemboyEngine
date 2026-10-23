@@ -402,7 +402,8 @@ bool Engine::Initialize(const std::string& title, int w, int h, WindowMode mode)
     // Live resize: while the user drags a window border, the system's modal loop
     // parks Engine::Run(), so a timer renders frames from the last state. The
     // timer exists only for the duration of the drag.
-    LiveResize::Instance().Attach(window_.Handle().getNativeHandle(), [this]() { RenderFrame(); });
+    LiveResize::Instance().Attach(reinterpret_cast<void*>(window_.Handle().getNativeHandle()),
+                                  [this]() { RenderFrame(); });
 
     BOY_INFO("Engine", "ready (threads: " + std::to_string(JobSystem::Instance().ThreadCount()) + ")");
     return true;
