@@ -183,7 +183,7 @@ private:
 // hook can be supplied by the game through setScreenReaderCallback().
 struct TtsWorker
 {
-    static TtsWorker& GetInstance()
+    static TtsWorker& Instance()
     {
         static TtsWorker worker;
         return worker;
