@@ -85,7 +85,9 @@ float CardAlpha(float elapsed, float hold)
 // simply omitted rather than rendered with a fallback stroke font.
 bool LoadBootFont(sf::Font& font)
 {
-    static const std::array<const char*, 8> candidates = {
+    static const std::array<const char*, 10> candidates = {
+        "Data/Fonts/NotoSans-Regular.ttf",
+        "assets/fonts/NotoSans-Regular.ttf",
         "C:/Windows/Fonts/seguisb.ttf",  // Segoe UI Semibold
         "C:/Windows/Fonts/segoeuib.ttf", // Segoe UI Bold
         "C:/Windows/Fonts/arialbd.ttf",  // Arial Bold
@@ -187,7 +189,7 @@ bool Play(Window& window, const std::vector<SplashCard>& cards, float engineHold
     if (engineHold > 0.f)
     {
         SplashCard engine;
-        engine.caption = kEngineCaption;
+        engine.caption = std::string(kEngineCaption) + "   " + FEMBOY_ENGINE_VERSION;
         engine.hold = engineHold;
         engine.embeddedLogo = true;
         source.push_back(std::move(engine));

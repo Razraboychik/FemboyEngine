@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.21)
-project(FemboyEngine VERSION 1.5.0 LANGUAGES CXX)
+project(FemboyEngine VERSION 1.6.0 LANGUAGES CXX)
 
 # The Windows resource compiler carries the executable icon and the version
 # block. It only exists in the Windows toolchain, so it is enabled where it can
@@ -382,7 +382,7 @@ if(FEMBOY_HAS_VOICE)
     endif()
 endif()
 
-target_compile_definitions(femboyengine PUBLIC FEMBOY_ENGINE_VERSION="1.5.0")
+target_compile_definitions(femboyengine PUBLIC FEMBOY_ENGINE_VERSION="1.6.0")
 
 # ImGui sources compiled into engine
 target_sources(femboyengine PRIVATE

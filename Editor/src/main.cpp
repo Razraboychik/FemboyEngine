@@ -7565,6 +7565,8 @@ int main(int argc, char** argv)
                 ImGui::Text("FemboyEngine");
                 ImGui::SetWindowFontScale(1.f);
                 ImGui::SameLine();
+                ImGui::TextDisabled("v%s", FEMBOY_ENGINE_VERSION);
+                ImGui::SameLine();
                 ImGui::TextDisabled("Project Browser");
                 ImGui::Separator();
 
