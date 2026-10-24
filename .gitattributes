@@ -1,0 +1,5 @@
+# GitHub language stats: vendored third-party sources are not engine code.
+/libs/** linguist-vendored
+# CMake man pages are documentation, not part of the engine implementation.
+/Man/** linguist-documentation
+/Docs/** linguist-documentation
